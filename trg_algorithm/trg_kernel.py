@@ -9,7 +9,7 @@ def trg_algorithm(temp, h, max_dimension, convergence_threshold, max_iterations 
     # current value of the partition function, updated at each iterative step
     current_z = 1
     # current value of the free energy
-    current_f = np.log(current_z)
+    current_f = -temp * np.log(current_z)
     # current number of particles in the Ising lattice
     current_particles = 1
     t_tensor = initial_trg_tensor(temp ,h)
@@ -39,7 +39,7 @@ def trg_algorithm(temp, h, max_dimension, convergence_threshold, max_iterations 
         # Update thermodynamic values and check for convergence
         current_particles *= 2
         current_z *= pow(t_trace, 1./current_particles)
-        new_f = np.log(current_z)
+        new_f = -temp * np.log(current_z)
         if abs(new_f - current_f) < convergence_threshold:
             return new_f
         current_f = new_f
