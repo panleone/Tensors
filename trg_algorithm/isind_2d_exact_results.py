@@ -25,6 +25,6 @@ def exact_free_energy(temp):
     cc, ss = cosh(2.0 * beta), sinh(2.0 * beta)
     k = 2.0 * ss / cc**2
 
-    integral, err = integrate.quad(lambda x : 1.0 + sqrt(abs(1.0 - k * k * cos(x)**2)), 0, 0.5 * pi)
+    integral, err = integrate.quad(lambda x : log(1.0 + sqrt(abs(1.0 - k * k * cos(x)**2))), 0, 0.5 * pi)
     result = integral / pi + log(cc) + 0.5 * log(2.0)
     return -result / beta
